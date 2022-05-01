@@ -7,7 +7,7 @@ This is a Laravel test project.
 To run this project you should have the following:
 - PHP v7.* installed.
 - MySql database engine.
-- Composer installed: <a hred="https://getcomposer.org/download/">Install Here</a>
+- Composer installed: [Install Here](https://getcomposer.org/download/)
 
 ## How to run
 - Clone the repository.
