@@ -1,7 +1,13 @@
 
 ## About TestPorject
 
-This is a test project.
+This is a Laravel test project.
+
+## Prerequisite
+To run this project you should have the following:
+- PHP v7.* installed.
+- MySql database engine.
+- Composer installed: <a hred="https://getcomposer.org/download/">Install Here</a>
 
 ## How to run
 - Clone the repository.
