@@ -18,7 +18,7 @@ class UserTest extends TestCase
     public function test_index()
     {
         $userId = 5;
-        $totalCount = 30;
+        $totalCount = 5;
         $response = $this->get("/api/v1/user/{$userId}/karma-position?num_users={$totalCount}", [
             'accept' => 'application/json'
         ]);
@@ -34,7 +34,7 @@ class UserTest extends TestCase
         //Test positions' calculations
         $users = json_decode($response->getContent())->data;
         foreach ($users as $user) {
-            $dbPosition = User::getPosition($user->karma_score, '<=');
+            $dbPosition = User::getPosition($user->karma_score);
             $this->assertEquals($dbPosition, $user->position);
         }
     }
