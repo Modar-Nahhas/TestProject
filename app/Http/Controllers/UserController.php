@@ -11,10 +11,10 @@ class UserController extends Controller
     {
         $data = $request->validated();
         $numberOfUsers = $data['num_users'] ?? 5;
-        $users = User::getUserRankBetween($id, $numberOfUsers);
+        $users = User::getUserRank($id, $numberOfUsers);
 //        dd($request->wantsJson());
         if($request->wantsJson()){
-            return self::getJsonResponse('success', $users);
+            return self::getJsonResponse('success', $users->reverse());
         }
         return view('welcome',['users'=>$users]);
     }

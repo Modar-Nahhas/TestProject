@@ -26,35 +26,33 @@
 
 </head>
 <body class="antialiased">
-<div
-    class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-    <div style="display: flex; justify-content: center; align-items: center; flex-direction: row; height: 100vh;">
-        <div style="width: 50%;">
-            <table id="user_table" class="table table-borderless">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Score</th>
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: row; height: 100vh;">
+    <div style="width: 50%;height: 80vh; overflow-y: auto;">
+        <table id="user_table" class="table table-borderless">
+            <thead style="position: sticky; top: 0; z-index: 1; background-color: white;">
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($users as $user)
+                @php $u = request()->route('id') == $user->id @endphp
+                <tr style="background-color: {{$u?'#fbebeb':'white'}};">
+                    <td style="font-weight: bold; color: {{$u?'#c95660':'black'}}">{{ $user->position}}</td>
+                    <td>
+                        <img src="{{$user->image_url}}" width="40" height="40" style="border-radius: 50%;">
+                        <span>{{ $user->username}}</span>
+                    </td>
+                    <td style="color: {{$u?'#c95660':'black'}}">{{ $user->karma_score}}</td>
                 </tr>
-                </thead>
-                <tbody>
-                @foreach($users as $user)
-                    @php $u = request()->route('id') == $user->id @endphp
-                    <tr style="background-color: {{$u?'#fbebeb':'white'}};">
-                        <td style="font-weight: bold; color: {{$u?'#c95660':'black'}}">{{ $user->position}}</td>
-                        <td>
-                            <img src="{{$user->image_url}}" width="40" height="40" style="border-radius: 50%;">
-                            <span>{{ $user->username}}</span>
-                        </td>
-                        <td style="color: {{$u?'#c95660':'black'}}">{{ $user->karma_score}}</td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
+            @endforeach
+            </tbody>
+        </table>
     </div>
 </div>
+
 <script>
     $(document).ready(function () {
         // $('#user_table').DataTable({
