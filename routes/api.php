@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/users/{id}', [\App\Http\Controllers\UserController::class, 'index']);
+Route::get('/v1/user/{id}/karma-position', [\App\Http\Controllers\UserController::class, 'index']);

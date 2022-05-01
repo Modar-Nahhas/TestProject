@@ -26,9 +26,11 @@ class User extends Authenticatable
         'image_url'
     ];
 
-    public static function getUserRankBetween($userId, int $baCount = 4, int $totalCount = 5): Collection
+    public static function getUserRankBetween($userId, int $totalCount = 5): Collection
     {
         $user = User::query()->findOrFail($userId);
+
+        $baCount = $totalCount / 2;
 
         $usersBefore = User::query()
             ->where('karma_score', '<=', $user->karma_score)
@@ -47,6 +49,9 @@ class User extends Authenticatable
         while ($users->count() != $totalCount && ($usersBefore->isNotEmpty() || $usersAfter->isNotEmpty())) {
             $u = $usersBefore->shift();
             if ($u != null) $users->push($u);
+
+            if ($users->count() == $totalCount) break;
+
             $u = $usersAfter->shift();
             if ($u != null) $users->prepend($u);
         }
